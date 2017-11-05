@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
@@ -71,6 +72,8 @@ public class FileViewerAdapter extends RecyclerView.Adapter<FileViewerAdapter.Re
                 DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NUMERIC_DATE | DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_YEAR
             )
         );
+
+        readMetaData(item.getFilePath());
 
         // define an on click listener to open PlaybackFragment
         holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -304,5 +307,33 @@ public class FileViewerAdapter extends RecyclerView.Adapter<FileViewerAdapter.Re
 
         AlertDialog alert = confirmDelete.create();
         alert.show();
+    }
+
+    public void readMetaData(String filePath) {
+
+        File  file = new File(filePath);
+
+        if (file.exists()) {
+            Log.i(LOG_TAG, ".mp4 file Exist");
+
+            //Added in API level 10
+            MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+            try {
+                retriever.setDataSource(file.getAbsolutePath());
+                for (int i = 0; i < 1000; i++){
+                    //only Metadata != null is printed!
+                    if(retriever.extractMetadata(i)!=null) {
+                        Log.i(LOG_TAG, "Metadata key -> " + i + ": " + retriever.extractMetadata(i));
+                    }
+
+                }
+            }catch (Exception e){
+                Log.e(LOG_TAG, "Exception : " + e.getMessage());
+            }
+
+        }else {
+            Log.e(LOG_TAG, ".mp4 file doesn´t exist.");
+        }
+
     }
 }
