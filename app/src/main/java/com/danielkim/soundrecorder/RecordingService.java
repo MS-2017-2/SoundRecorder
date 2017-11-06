@@ -6,11 +6,9 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.media.MediaRecorder;
 import android.os.Environment;
 import android.os.IBinder;
-import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
@@ -44,7 +42,6 @@ public class RecordingService extends Service {
     private OnTimerChangedListener onTimerChangedListener = null;
     private static final SimpleDateFormat mTimerFormat = new SimpleDateFormat("mm:ss", Locale.getDefault());
 
-    private Timer mTimer = null;
     private TimerTask mIncrementTimerTask = null;
 
     @Override
@@ -143,7 +140,7 @@ public class RecordingService extends Service {
     }
 
     private void startTimer() {
-        mTimer = new Timer();
+        private Timer mTimer = new Timer();
         mIncrementTimerTask = new TimerTask() {
             @Override
             public void run() {
