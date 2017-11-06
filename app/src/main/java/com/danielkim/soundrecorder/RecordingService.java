@@ -140,7 +140,7 @@ public class RecordingService extends Service {
     }
 
     private void startTimer() {
-        private Timer mTimer = new Timer();
+        Timer mTimer = new Timer();
         mIncrementTimerTask = new TimerTask() {
             @Override
             public void run() {
