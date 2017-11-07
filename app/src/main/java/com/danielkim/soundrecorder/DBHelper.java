@@ -24,7 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "saved_recordings.db";
     private static final int DATABASE_VERSION = 1;
 
-    public static abstract class DBHelperItem implements BaseColumns {
+    public abstract static class DBHelperItem implements BaseColumns {
         public static final String TABLE_NAME = "saved_recordings";
 
         public static final String COLUMN_NAME_RECORDING_NAME = "recording_name";
@@ -53,7 +53,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        /* Called when the database needs to be upgraded.
+         The implementation should use this method to drop tables,
+          add tables, or do anything else it needs to upgrade to the new schema version. */
     }
 
     public DBHelper(Context context) {
