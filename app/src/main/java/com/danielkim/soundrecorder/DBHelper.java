@@ -25,8 +25,8 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     public abstract static class DBHelperItem implements BaseColumns {
+        private DBHelperItem() {}
         public static final String TABLE_NAME = "saved_recordings";
-
         public static final String COLUMN_NAME_RECORDING_NAME = "recording_name";
         public static final String COLUMN_NAME_RECORDING_FILE_PATH = "file_path";
         public static final String COLUMN_NAME_RECORDING_LENGTH = "length";
@@ -53,9 +53,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        /* Called when the database needs to be upgraded.
-         The implementation should use this method to drop tables,
-          add tables, or do anything else it needs to upgrade to the new schema version. */
+        // Application does not support database upgrades.
+        // TODO look into this method again when we store additional data together with the audio files
     }
 
     public DBHelper(Context context) {
@@ -156,9 +155,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(DBHelperItem.COLUMN_NAME_TIME_ADDED, item.getTime());
         cv.put(DBHelperItem._ID, item.getId());
         long rowId = db.insert(DBHelperItem.TABLE_NAME, null, cv);
-        if (mOnDatabaseChangedListener != null) {
-            //mOnDatabaseChangedListener.onNewDatabaseEntryAdded();
-        }
+
         return rowId;
     }
 }
