@@ -53,7 +53,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        // Application does not support database upgrades.
+        // TODO look into this method again when we store additional data together with the audio files
     }
 
     public DBHelper(Context context) {
