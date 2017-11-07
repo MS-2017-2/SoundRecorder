@@ -155,8 +155,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(DBHelperItem.COLUMN_NAME_RECORDING_LENGTH, item.getLength());
         cv.put(DBHelperItem.COLUMN_NAME_TIME_ADDED, item.getTime());
         cv.put(DBHelperItem._ID, item.getId());
-        long rowId = db.insert(DBHelperItem.TABLE_NAME, null, cv);
-
-        return rowId;
+ 
+        return db.insert(DBHelperItem.TABLE_NAME, null, cv);
     }
 }
