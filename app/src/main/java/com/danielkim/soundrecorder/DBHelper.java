@@ -53,7 +53,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        /* Called when the database needs to be upgraded.
+         The implementation should use this method to drop tables,
+          add tables, or do anything else it needs to upgrade to the new schema version. */
     }
 
     public DBHelper(Context context) {
