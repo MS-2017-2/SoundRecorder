@@ -25,8 +25,8 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     public abstract static class DBHelperItem implements BaseColumns {
+        private DBHelperItem() {}
         public static final String TABLE_NAME = "saved_recordings";
-
         public static final String COLUMN_NAME_RECORDING_NAME = "recording_name";
         public static final String COLUMN_NAME_RECORDING_FILE_PATH = "file_path";
         public static final String COLUMN_NAME_RECORDING_LENGTH = "length";
