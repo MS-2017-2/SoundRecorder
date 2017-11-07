@@ -54,7 +54,8 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Application does not support database upgrades.
-        // TODO look into this method again when we store additional data together with the audio files
+        // This method might be implemented when we store additional data
+        // together with the audio files.
     }
 
     public DBHelper(Context context) {
@@ -154,8 +155,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(DBHelperItem.COLUMN_NAME_RECORDING_LENGTH, item.getLength());
         cv.put(DBHelperItem.COLUMN_NAME_TIME_ADDED, item.getTime());
         cv.put(DBHelperItem._ID, item.getId());
-        long rowId = db.insert(DBHelperItem.TABLE_NAME, null, cv);
-
-        return rowId;
+ 
+        return db.insert(DBHelperItem.TABLE_NAME, null, cv);
     }
 }
