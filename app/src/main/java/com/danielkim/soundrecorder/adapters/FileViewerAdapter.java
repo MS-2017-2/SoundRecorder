@@ -230,9 +230,12 @@ public class FileViewerAdapter extends RecyclerView.Adapter<FileViewerAdapter.Re
         } else {
             //file name is unique, rename file
             File oldFilePath = new File(getItem(position).getFilePath());
-            oldFilePath.renameTo(f);
-            mDatabase.renameItem(getItem(position), name, mFilePath);
-            notifyItemChanged(position);
+            Boolean fileRenamed = oldFilePath.renameTo(f);
+
+            if (fileRenamed) {
+                mDatabase.renameItem(getItem(position), name, mFilePath);
+                notifyItemChanged(position);
+            }
         }
     }
 
