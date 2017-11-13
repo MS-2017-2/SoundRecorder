@@ -188,19 +188,25 @@ public class FileViewerAdapter extends RecyclerView.Adapter<FileViewerAdapter.Re
 
         //delete file from storage
         File file = new File(getItem(position).getFilePath());
-        file.delete();
+        Boolean fileDeleted = file.delete();
+        String statusText;
+
+        if (fileDeleted) {
+            mDatabase.removeItemWithId(getItem(position).getId());
+            notifyItemRemoved(position);
+            statusText = mContext.getString(R.string.toast_file_delete_success);
+        } else {
+            statusText = mContext.getString(R.string.toast_file_delete_failure);
+        }
 
         Toast.makeText(
             mContext,
             String.format(
-                mContext.getString(R.string.toast_file_delete),
+                statusText,
                 getItem(position).getName()
             ),
             Toast.LENGTH_SHORT
         ).show();
-
-        mDatabase.removeItemWithId(getItem(position).getId());
-        notifyItemRemoved(position);
     }
 
     //TODO
