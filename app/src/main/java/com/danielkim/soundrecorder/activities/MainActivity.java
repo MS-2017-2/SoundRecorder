@@ -17,7 +17,7 @@ import com.danielkim.soundrecorder.fragments.FileViewerFragment;
 import com.danielkim.soundrecorder.fragments.RecordFragment;
 
 
-public class MainActivity extends ActionBarActivity{
+public class MainActivity extends ActionBarActivity {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
@@ -36,7 +36,7 @@ public class MainActivity extends ActionBarActivity{
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setPopupTheme(R.style.ThemeOverlay_AppCompat_Light);
-        
+
         setSupportActionBar(toolbar);
 
     }
@@ -54,19 +54,20 @@ public class MainActivity extends ActionBarActivity{
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                Intent i = new Intent(this, SettingsActivity.class);
-                startActivity(i);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+
+        if (item.getItemId() == R.id.action_settings) {
+            Intent i = new Intent(this, SettingsActivity.class);
+            startActivity(i);
+            return true;
         }
+
+        return super.onOptionsItemSelected(item);
+
     }
 
     public class MyAdapter extends FragmentPagerAdapter {
-        private String[] titles = { getString(R.string.tab_title_record),
-                getString(R.string.tab_title_saved_recordings) };
+        private String[] titles = {getString(R.string.tab_title_record),
+                getString(R.string.tab_title_saved_recordings)};
 
         public MyAdapter(FragmentManager fm) {
             super(fm);
@@ -74,11 +75,11 @@ public class MainActivity extends ActionBarActivity{
 
         @Override
         public Fragment getItem(int position) {
-            switch(position){
-                case 0:{
+            switch (position) {
+                case 0: {
                     return RecordFragment.newInstance(position);
                 }
-                case 1:{
+                case 1: {
                     return FileViewerFragment.newInstance(position);
                 }
             }
