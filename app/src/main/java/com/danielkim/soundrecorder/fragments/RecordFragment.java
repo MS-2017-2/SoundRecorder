@@ -30,7 +30,6 @@ import java.io.File;
 public class RecordFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_POSITION = "position";
-    private static final String LOG_TAG = RecordFragment.class.getSimpleName();
 
     private int position;
 
