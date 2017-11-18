@@ -101,10 +101,10 @@ public class PlaybackFragment extends DialogFragment{
                     mMediaPlayer.seekTo(progress);
                     mHandler.removeCallbacks(mRunnable);
 
-                    long minutes = TimeUnit.MILLISECONDS.toMinutes(mMediaPlayer.getCurrentPosition());
-                    long seconds = TimeUnit.MILLISECONDS.toSeconds(mMediaPlayer.getCurrentPosition())
-                            - TimeUnit.MINUTES.toSeconds(minutes);
-                    mCurrentProgressTextView.setText(String.format("%02d:%02d", minutes,seconds));
+                    long minutesSeekBar = TimeUnit.MILLISECONDS.toMinutes(mMediaPlayer.getCurrentPosition());
+                    long secondsSeekBar = TimeUnit.MILLISECONDS.toSeconds(mMediaPlayer.getCurrentPosition())
+                            - TimeUnit.MINUTES.toSeconds(minutesSeekBar);
+                    mCurrentProgressTextView.setText(String.format("%02d:%02d", minutesSeekBar,secondsSeekBar));
 
                     updateSeekBar();
 
@@ -128,10 +128,10 @@ public class PlaybackFragment extends DialogFragment{
                     mHandler.removeCallbacks(mRunnable);
                     mMediaPlayer.seekTo(seekBar.getProgress());
 
-                    long minutes = TimeUnit.MILLISECONDS.toMinutes(mMediaPlayer.getCurrentPosition());
-                    long seconds = TimeUnit.MILLISECONDS.toSeconds(mMediaPlayer.getCurrentPosition())
-                            - TimeUnit.MINUTES.toSeconds(minutes);
-                    mCurrentProgressTextView.setText(String.format("%02d:%02d", minutes,seconds));
+                    long minutesStopTracking = TimeUnit.MILLISECONDS.toMinutes(mMediaPlayer.getCurrentPosition());
+                    long secondsStopTracking = TimeUnit.MILLISECONDS.toSeconds(mMediaPlayer.getCurrentPosition())
+                            - TimeUnit.MINUTES.toSeconds(minutesStopTracking);
+                    mCurrentProgressTextView.setText(String.format("%02d:%02d", minutesStopTracking,secondsStopTracking));
                     updateSeekBar();
                 }
             }
@@ -304,10 +304,10 @@ public class PlaybackFragment extends DialogFragment{
                 int mCurrentPosition = mMediaPlayer.getCurrentPosition();
                 mSeekBar.setProgress(mCurrentPosition);
 
-                long minutes = TimeUnit.MILLISECONDS.toMinutes(mCurrentPosition);
-                long seconds = TimeUnit.MILLISECONDS.toSeconds(mCurrentPosition)
-                        - TimeUnit.MINUTES.toSeconds(minutes);
-                mCurrentProgressTextView.setText(String.format("%02d:%02d", minutes, seconds));
+                long minutesUpdateSeekBar = TimeUnit.MILLISECONDS.toMinutes(mCurrentPosition);
+                long secondsUpdateSeekBar = TimeUnit.MILLISECONDS.toSeconds(mCurrentPosition)
+                        - TimeUnit.MINUTES.toSeconds(minutesUpdateSeekBar);
+                mCurrentProgressTextView.setText(String.format("%02d:%02d", minutesUpdateSeekBar, secondsUpdateSeekBar));
 
                 updateSeekBar();
             }
