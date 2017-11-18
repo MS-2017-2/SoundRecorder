@@ -36,9 +36,9 @@ public class MainActivity extends ActionBarActivity{
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setPopupTheme(R.style.ThemeOverlay_AppCompat_Light);
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-        }
+        
+        setSupportActionBar(toolbar);
+
     }
 
     @Override
