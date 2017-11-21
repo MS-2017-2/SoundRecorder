@@ -104,17 +104,23 @@ public class RecordingService extends Service {
     public void setFileNameAndPath(){
         int count = 0;
         File f;
-
+        
+        StringBuilder sbFilePath = new StringBuilder();
         do{
             count++;
 
             mFileName = getString(R.string.default_file_name)
                     + "_" + (mDatabase.getCount() + count) + ".mp4";
-            mFilePath = Environment.getExternalStorageDirectory().getAbsolutePath();
-            mFilePath += "/SoundRecorder/" + mFileName;
-
+            
+            sbFilePath.append(Environment.getExternalStorageDirectory().getAbsolutePath())
+                .append("/SoundRecorder/")
+                .append(mFileName);
+            
+            mFilePath = sbFilePath.toString();
+            
             f = new File(mFilePath);
-        }while (f.exists() && !f.isDirectory());
+            
+        } while (f.exists() && !f.isDirectory());
     }
 
     public void stopRecording() {
